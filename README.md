@@ -1,10 +1,12 @@
 # clang-cookbook
-
-TODO: Enter the cookbook description here.
+Installs [clang][1] from package or binary.
 
 ## Supported Platforms
-
-TODO: List your supported platforms.
+- Ubuntu 12.04
+- Ubuntu 14.04
+- CentOS 7.0
+- CentOS 6.5
+- CentOS 5.10
 
 ## Attributes
 
@@ -16,10 +18,22 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['clang']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['clang']['install_type']</tt></td>
+    <td>String</td>
+    <td>install clang by package or source</td>
+    <td><tt>package</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['clang']['binary_version']</tt></td>
+    <td>String</td>
+    <td>version of clang to install</td>
+    <td><tt>3.4.2</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['clang']['binary_url']</tt></td>
+    <td>String</td>
+    <td>url to install clang from</td>
+    <td><tt>http://llvm.org/releases/%{version}/clang+llvm-%{version}-%{platform}.tar.xz</tt></td>
   </tr>
 </table>
 
@@ -37,6 +51,4 @@ Include `clang` in your node's `run_list`:
 }
 ```
 
-## License and Authors
-
-Author:: John Bellone (<jbellone@bloomberg.net>) (<jbellone@bloomberg.net>)
+[1]: http://llvm.org/releases

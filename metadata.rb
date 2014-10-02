@@ -2,9 +2,9 @@ name             'clang'
 maintainer       'John Bellone (<jbellone@bloomberg.net>)'
 maintainer_email 'jbellone@bloomberg.net'
 license          'Apache 2.0'
-description      'Installs/Configures clang'
-long_description 'Installs/Configures clang'
-version          '0.1.0'
+description      'Installs clang from package or source.'
+long_description 'Installs clang from package or source.'
+version          '0.1.1'
 
 %w(centos redhat).each do |name|
   supports name, '~> 7.0'

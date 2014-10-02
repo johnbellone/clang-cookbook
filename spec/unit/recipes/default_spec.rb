@@ -5,10 +5,10 @@ describe_recipe 'clang::default' do
     it { expect(chef_run).to install_package('clang') }
   end
 
-  context 'ubuntu 12.04 source install' do
+  context 'ubuntu 12.04 binary install' do
     let(:chef_run) do
       ChefSpec::Runner.new(node_attributes) do |node|
-        node.set['clang']['install_type'] = 'source'
+        node.set['clang']['install_type'] = 'binary'
       end.converge(described_recipe)
     end
 
@@ -21,10 +21,10 @@ describe_recipe 'clang::default' do
     end
   end
 
-  context 'ubuntu 14.04 source install' do
+  context 'ubuntu 14.04 binary install' do
     let(:chef_run) do
       ChefSpec::Runner.new(platform: 'ubuntu', version: '14.04') do |node|
-        node.set['clang']['install_type'] = 'source'
+        node.set['clang']['install_type'] = 'binary'
       end.converge(described_recipe)
     end
 
@@ -37,10 +37,10 @@ describe_recipe 'clang::default' do
     end
   end
 
-  context 'centos 7.0 source install' do
+  context 'centos 7.0 binary install' do
     let(:chef_run) do
       ChefSpec::Runner.new(platform: 'centos', version: '7.0') do |node|
-        node.set['clang']['install_type'] = 'source'
+        node.set['clang']['install_type'] = 'binary'
       end.converge(described_recipe)
     end
 
