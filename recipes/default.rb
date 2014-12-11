@@ -3,13 +3,32 @@
 # Recipe:: default
 # License:: Apache 2.0 (see http://www.apache.org/licenses/LICENSE-2.0)
 #
-package 'clang' do
-  only_if { node['clang']['install_type'] == 'package' }
-end
 
+case node['clang']['install_type']
+when 'package'
+  case node['platform']
+  when 'ubuntu', 'debian'
+    dist = node['clang']['package_repo_distribution']
+
+    apt_repository 'llvm-toolchain' do
+      uri "http://llvm.org/apt/#{dist}"
+      # DON'T USE: this add a component not existant
+      #distribution dist
+      components ["main",
+        "llvm-toolchain-#{dist}",
+        "llvm-toolchain-#{dist}-#{node['clang']['package_version']}",
+      ]
+      key 'http://llvm.org/apt/llvm-snapshot.gpg.key'
+    end
+
+    package "clang-#{node['clang']['package_version']}"
+  else
+    package "clang"
+  end
+
+when 'binary'
 # Figure out the proper download URL and checksum value depending on the
 # platform and version that is being specified.
-if node['clang']['install_type'] == 'binary'
   url_options = { version: node['clang']['binary_version'] }
   binary_checksum = node['clang']['binary_checksum']
 
